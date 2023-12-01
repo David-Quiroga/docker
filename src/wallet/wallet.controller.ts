@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { WalletService } from './wallet.service';
 import { CreateWalletDto } from './dto/create-wallet.dto';
 import { UpdateWalletDto } from './dto/update-wallet.dto';
+import { PaginacionDto } from 'src/common/common.module';
 
 @Controller('wallet')
 export class WalletController {
@@ -13,13 +14,13 @@ export class WalletController {
   }
 
   @Get()
-  findAll() {
-    return this.walletService.findAll();
+  findAll(@Query() paginacionDto: PaginacionDto) {
+    return this.walletService.findAll(paginacionDto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.walletService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.walletService.findOne(id);
   }
 
   @Patch(':id')

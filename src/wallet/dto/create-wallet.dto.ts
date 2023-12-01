@@ -1,5 +1,21 @@
+import { Type } from "class-transformer"
+import { IsInt, IsOptional, IsPositive, IsString } from "class-validator"
+
 export class CreateWalletDto {
-    id: string
-    nombreBilletera: string
-    descripcion: string
+    @IsInt()
+    id: number
+
+    @IsString()
+    @IsOptional()
+    nombreBilletera?: string
+
+    @IsString()
+    @IsOptional()
+    descripcion?: string
+    
+    @IsInt()
+    @IsPositive()
+    @IsOptional()
+    @Type( () => Number )
+    balance?: number
 }

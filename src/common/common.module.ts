@@ -1,0 +1,11 @@
+import { Type } from "class-transformer";
+import { IsOptional } from "class-validator";
+
+export class PaginacionDto{
+    @Type( () => Number)
+    limit?:number
+
+    @IsOptional()
+    @Type( () => Number)
+    offset?: number
+}
